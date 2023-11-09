@@ -1,7 +1,7 @@
 #!/bin/bash
 BANNER() {
   echo -e "\033[1;33m   __  ___ ____ ______ ___ \033[0m"
-  echo -e "\033[1;33m  /  |/  //  _//_  __// _ \033[0m"
+  echo -e "\033[1;33m  /  |/  //  _//_  __// _ \ \033[0m"
   echo -e "\033[1;33m / /|_/ /_/ /   / /  / _  |\033[0m"
   echo -e "\033[1;33m/_/  /_//___/  /_/  /____/ \033[0m"
 
@@ -23,7 +23,8 @@ function send_message() {
   local text="$1"
   curl -s -X POST "https://api.telegram.org/bot$BOT_API_TOKEN/sendMessage" \
     -d "chat_id=$CHAT_ID" \
-    -d "text=$text"
+    -d "text=$text" | jq
+    echo -e "===================================================================="
 }
 
 function send_file() {
@@ -32,6 +33,8 @@ function send_file() {
   
   curl -s -F "chat_id=$CHAT_ID" -F "document=@$file_path" -F "caption=$caption" -F "parse_mode=Markdown" -F "disable_notification=true" -F "disable_web_page_preview=true" -F "allow_sending_without_reply=true" \
     "https://api.telegram.org/bot$BOT_API_TOKEN/sendDocument" | jq 
+    echo -e "===================================================================="
+    
 }
 
 while true; do
