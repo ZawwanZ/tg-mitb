@@ -16,6 +16,7 @@ BANNER() {
 BANNER
 
 BOT_API_TOKEN="bot api" #replace
+TMP_DIR="/data/data/com.termux/files/usr/tmp"
 read -p "Enter your telegram-user id :"  CHAT_ID
 
 function send_message() {
@@ -52,15 +53,17 @@ while true; do
       ;;
     2)
       # Capture a photo using the camera
-      termux-camera-photo -c 1 /tmp/captured_photo.jpg
-      send_file "/tmp/captured_photo.jpg" "Captured photo" "image/jpeg"
+      termux-camera-photo -c 1 "$TMP_DIR/captured_photo.jpg"
+      send_file "$TMP_DIR/captured_photo.jpg" "Captured photo" "image/jpeg"
       ;;
     3)
-      # Record audio using the microphone
+  # Record audio using the microphone
       read -p "Enter the audio duration in seconds: " audio_duration
-      termux-microphone-record -l "$audio_duration" -o /tmp/recorded_audio.wav
-      send_file "/tmp/recorded_audio.wav" "Recorded audio" "audio/wav"
+      termux-microphone-record -f "$TMP_DIR/recorded_audio.wav" -l "$audio_duration"
+      send_file "$TMP_DIR/recorded_audio.wav" "Recorded audio" "audio/wav"
       ;;
+
+
     4)
       #file
       read -p "Enter the path to a file: " file_path
