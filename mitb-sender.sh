@@ -7,7 +7,7 @@ BANNER() {
 
   echo -e "\033[1;34mMAN IN THE BOT\033[0m"
   echo -e  "\e[1;31m SINGLE TARGET MESSAGE SENDER \e[0m"
-  echo -e "\033[1;32mAuthor:\033[0m zawwanz"
+  echo -e "\033[1;32mAuthor:\033[0m zawwanz and warren"
   echo -e "\033[1;32mTelegram:\033[0m @sanwanazaw"
   echo -e "\033[1;32mVersion:\033[0m 1.0"
 }
